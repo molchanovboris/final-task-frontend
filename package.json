@@ -16,6 +16,10 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsmolchanov/final-task-frontend.git"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
