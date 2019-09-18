@@ -20,7 +20,6 @@ export default class Registration extends Component {
   
   registerHandler = () => {
     console.log(this);
-    // axios.post('http://localhost:5000/auth/login', { email: email, password: password })
     axios.post('http://localhost:5000/auth/register', { username: this.state.username , email: this.state.email, password: this.state.password })
     .then(res => {
       console.log('http good');
