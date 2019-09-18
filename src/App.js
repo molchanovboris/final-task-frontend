@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
-import Registration from './components/Registration/Registration';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 import Header from './components/Header';
 import history from './history';
 
@@ -12,7 +13,8 @@ const App = () => {
         <div>
           <Header />
           <Switch>
-            <Route path="/" exact component={Registration} />
+            <Route path="/" exact component={Register} />
+            <Route path="/login" exact component={Login} />
           </Switch>
         </div>
       </Router>

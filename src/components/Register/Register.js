@@ -5,11 +5,21 @@ import axios from 'axios';
 export default class Registration extends Component {
 
   loginHandler = () => {
+    axios.post('http://localhost:5000/auth/login', { email: 'someemail@com', password: 'somepass' })
+    .then(res => {
+      console.log('http good');
+      console.log(res);
+    });
 
   }
 
-  registerHandler = () => {
-
+  registerHandler = (email, password) => {
+    // axios.post('http://localhost:5000/auth/login', { email: email, password: password })
+    axios.post('http://localhost:5000/auth/register', { username: 'Username', email: 'someemail@com', password: 'somepass', confirmPassword: 'Confirm password' })
+    .then(res => {
+      console.log('http good');
+      console.log(res);
+    });
   }
 
   submitHandler = event => {
@@ -20,7 +30,7 @@ export default class Registration extends Component {
     return (
       <div>
         <div>
-          <h1>Registration</h1>
+          <h1>Registrer</h1>
 
           <form onSubmit={this.submitHandler}>
             <Input label="Username" />
@@ -36,16 +46,11 @@ export default class Registration extends Component {
 
             <button 
               type="success" 
-              onClick={this.loginHandler}
-            >
-              Sign in
-            </button>
-            <button 
-              type="success" 
               onClick={this.registerHandler}
             > 
-              Check in
+              Register
             </button>
+
           </form>
         </div>
       </div>

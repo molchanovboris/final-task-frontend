@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  return(
+  return (
     <div className="ui secondary pointing menu">
-      <Link to="/" className="item">
-        Registration
+      <Link to="/login" className="item">
+        Login
       </Link>
-    </div>) ;
+
+      <Link to="/" className="item">
+        Register
+      </Link>
+    </div>
+    );
 };
 
 export default Header;
