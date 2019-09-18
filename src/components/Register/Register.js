@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import Input   from '../input';
 import axios from 'axios';
+import { CLIENT_RENEG_LIMIT } from 'tls';
 
 export default class Registration extends Component {
 
-  loginHandler = () => {
-    axios.post('http://localhost:5000/auth/login', { email: 'someemail@com', password: 'somepass' })
-    .then(res => {
-      console.log('http good');
-      console.log(res);
-    });
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      username: '',
+      email: '',
+      password: ''
+    };
+
+    this.registerHandler.bind(this);
   }
 
-  registerHandler = (email, password) => {
+  
+  registerHandler = () => {
+    console.log(this);
     // axios.post('http://localhost:5000/auth/login', { email: email, password: password })
-    axios.post('http://localhost:5000/auth/register', { username: 'Username', email: 'someemail@com', password: 'somepass', confirmPassword: 'Confirm password' })
+    axios.post('http://localhost:5000/auth/register', { username: this.state.username , email: this.state.email, password: this.state.password })
     .then(res => {
       console.log('http good');
       console.log(res);
     });
   }
 
-  submitHandler = event => {
-    event.preventDefault()
+  updateFormState = (params) => {
+    this.setState(params);
   }
 
   render() {
@@ -32,11 +38,11 @@ export default class Registration extends Component {
         <div>
           <h1>Registrer</h1>
 
-          <form onSubmit={this.submitHandler}>
-            <Input label="Username" />
-            <Input label="Email" />
+          <form onSubmit={this.registerHandler}>
+            <Input label="Username" value={this.state.username} onChange={($event) => this.updateFormState({ ...this.state, username: $event.target.value })}/>
+            <Input label="Email" value={this.state.email} onChange={($event) => this.updateFormState({ ...this.state, email: $event.target.value })} />
             <Input 
-              label="Password" 
+              label="Password" value={this.state.password} onChange={($event) => this.updateFormState({ ...this.state, password: $event.target.value })} 
               errorMassage={'error'}
             />
             <Input 
@@ -45,8 +51,7 @@ export default class Registration extends Component {
             />
 
             <button 
-              type="success" 
-              onClick={this.registerHandler}
+              type="submit"
             > 
               Register
             </button>

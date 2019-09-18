@@ -7,6 +7,17 @@ import is from 'is_js';
 
 export default class Login extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: ''
+    };
+
+    this.loginHandler.bind(this);
+  }
+
   
 
   state = {
@@ -39,7 +50,8 @@ export default class Login extends Component {
   }
 
   loginHandler = () => {
-    axios.post('http://localhost:5000/auth/login', { email: 'someemail@com', password: 'somepass' })
+    console.log(this);
+    axios.post('http://localhost:5000/auth/login', { email: this.state.email, password: this.state.password })
     .then(res => {
       console.log('login good');
       console.log(res);
@@ -47,14 +59,12 @@ export default class Login extends Component {
 
   }
 
-  registerHandler = () => {
-
+  updateFormState = (params) => {
+    this.setState(params);
   }
 
-  submitHandler = event => {
-    event.preventDefault()
-  }
-
+  
+  
   validateControl(value, validation) {
     if (!validation) {
       return true
@@ -118,11 +128,15 @@ export default class Login extends Component {
         <div>
           <h1>Authorization</h1>
 
-          <form onSubmit={this.submitHandler}>
-             { this.renderInputs() }
-
+          <form onSubmit={this.loginHandler}>
+            <Input label="Email" value={this.state.email} onChange={($event) => this.updateFormState({ ...this.state, email: $event.target.value })} />
+            <Input 
+              label="Password" value={this.state.password} onChange={($event) => this.updateFormState({ ...this.state, password: $event.target.value })} 
+              errorMassage={'error'}
+            />
+            
             <button 
-              type="success" 
+              type="submit" 
               onClick={this.loginHandler}
             >
               Login
