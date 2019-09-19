@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Input   from '../input';
+import classes from './Login.module.css';
+import Input   from '../input/input';
 import axios from 'axios';
 import is from 'is_js';
 
@@ -27,7 +28,6 @@ export default class Login extends Component {
         type: 'email',
         label: 'Email',
         errorMassage: 'enter the correct email',
-        value: false,
         touched: false,
         validation: {
           required: true,
@@ -39,7 +39,6 @@ export default class Login extends Component {
         type: 'password',
         label: 'Password',
         errorMassage: 'enter the correct password',
-        value: false,
         touched: false,
         validation: {
           required: true,
@@ -82,7 +81,7 @@ export default class Login extends Component {
     }
 
     if (validation.minLength) {
-      isValid = value. length >= validation.minLength && isValid
+      isValid = value.length >= validation.minLength && isValid
     }
 
     return isValid
@@ -124,15 +123,15 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
-        <div>
+      <div className={classes.Login}>
+          <div>
           <h1>Authorization</h1>
 
-          <form onSubmit={this.loginHandler}>
+          <form onSubmit={this.loginHandler} className={classes.LoginForm}> 
             <Input label="Email" value={this.state.email} onChange={($event) => this.updateFormState({ ...this.state, email: $event.target.value })} />
             <Input 
               label="Password" value={this.state.password} onChange={($event) => this.updateFormState({ ...this.state, password: $event.target.value })} 
-              errorMassage={'error'}
+              errorMessage={'ERROR'}
             />
             
             <button 

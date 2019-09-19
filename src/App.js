@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import history from './history';
 
 

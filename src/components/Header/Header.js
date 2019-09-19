@@ -1,14 +1,15 @@
 import React from 'react';
+import classes from './Header.module.css';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <div className="ui secondary pointing menu">
-      <Link to="/login" className="item">
+    <div className={classes.Header}>
+      <Link to="/login" className={classes.Header}>
         Login
       </Link>
 
-      <Link to="/" className="item">
+      <Link to="/" className={classes.Header}>
         Register
       </Link>
     </div>

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import Input   from '../input';
+import classes from './Register.module.css';
+import Input from '../input/input';
 import axios from 'axios';
-import { CLIENT_RENEG_LIMIT } from 'tls';
+// import { CLIENT_RENEG_LIMIT } from 'tls';
+// import classes from '*.module.sass';
 
 export default class Registration extends Component {
 
@@ -33,20 +35,20 @@ export default class Registration extends Component {
 
   render() {
     return (
-      <div>
+      <div className={classes.Register}>
         <div>
           <h1>Registrer</h1>
 
-          <form onSubmit={this.registerHandler}>
+          <form onSubmit={this.registerHandler} className={classes.RegisterForm}>
             <Input label="Username" value={this.state.username} onChange={($event) => this.updateFormState({ ...this.state, username: $event.target.value })}/>
             <Input label="Email" value={this.state.email} onChange={($event) => this.updateFormState({ ...this.state, email: $event.target.value })} />
             <Input 
               label="Password" value={this.state.password} onChange={($event) => this.updateFormState({ ...this.state, password: $event.target.value })} 
-              errorMassage={'error'}
+              errorMessage={'ERROR'}
             />
             <Input 
               label="Confirm password" 
-              errorMassage={'error'}
+              errorMessage={'ERROR'}
             />
 
             <button 

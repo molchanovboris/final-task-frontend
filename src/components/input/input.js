@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import classes from './input.module.css';
 
 function isInvalid({valid, touched, shouldValidate}) {
   return !valid && shouldValidate && touched
@@ -6,14 +7,15 @@ function isInvalid({valid, touched, shouldValidate}) {
 
 const Input = props => {
   const inputType = props.type || 'text'
+  const cls = [classes.Input]
   const htmlFor = `${inputType}-${Math.random()}`
 
   if (isInvalid(props)) {
-    
+    cls.push(classes.isInvalid)
   }
 
   return(
-    <div>
+    <div className={cls.join('')}>
       <label htmlFor="">{props.label}</label>
       <input 
         type={inputType}
@@ -28,9 +30,8 @@ const Input = props => {
           ?<span>{props.errorMassage || 'Enter the correct value'}</span>
           :null
         }
-      
 
-      <span>{props.errorMassage}</span>
+        <span>{props.errorMessage}</span>
     </div>
   )
 }
