@@ -1,4 +1,4 @@
-.Register {
+.Signup {
     display: flex;
     justify-content: center;
     padding-top: 100px;
@@ -7,21 +7,27 @@
     background: linear-gradient(270deg, #72878b 0, #91949c 100%);
 }
 
-.Register > div {
+.Signup > div {
     width: 100%;
     max-width: 600px;
     padding: 0 20px;
 }
 
-.Register h1 {
+.Signup h1 {
     color: rgb(216, 217, 218);;
     text-align: center;
 
 }
 
-.RegisterForm {
+.SignupForm {
+    display: flex;
+    flex-direction: column;
     background: #eee;
     box-sizing: 2px 2px 2px rgba(0, 0, 0, .5);
     padding: 15px;
     border-radius: 5px;
+}
+
+.SignupForm > * {
+    margin-bottom: 10px;
 }
