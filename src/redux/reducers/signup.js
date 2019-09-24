@@ -1,5 +1,6 @@
 import { SIGNUP } from "../actionTypes";
 
+
 const initialState = {
   username: '',
   email: '',

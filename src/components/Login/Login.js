@@ -42,10 +42,10 @@ export class Login extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className={classes.Login}>
         <div>
+          <Link to="/signup" >Register</Link>
           <h1>Login</h1>
 
           <form onSubmit={this.lohinHandler} className={classes.LoginForm}>
@@ -55,7 +55,6 @@ export class Login extends Component {
             <input type="password" id="password" value={this.state.password} onChange={($event) => this.updateFormState({ ...this.state, password: $event.target.value })} />
             
             <button type="submit">Login</button>
-            <Link to="/signup">Register</Link>
 
           </form>
         </div>
