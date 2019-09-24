@@ -15,3 +15,16 @@ export const createSignup = formValues => async dispatch => {
     }
 
 };
+
+export const createLogin = formValues => async dispatch => {
+    dispatch(actions.loginRequest());
+
+    try {
+        const result = await axiosInstance.post('/auth/login', formValues)
+        dispatch(actions.loginSuccess(result.data));
+
+    } catch (error) {
+        dispatch(actions.loginFailure({ message: error.message }));
+    }
+
+};
