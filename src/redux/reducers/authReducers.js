@@ -1,0 +1,29 @@
+import { SIGNUP } from "../actionTypes";
+import { LOGIN } from "../actionTypes";
+
+
+const initialState = {
+  username: '',
+  email: '',
+  password: ''
+};
+
+export default (state = initialState, action) => {
+  switch (action.type) {
+    case SIGNUP: {
+      return {
+        ...state,
+        ...action.payload
+      };
+    }
+    case LOGIN: {
+      return {
+        ...state,
+        ...action.payload
+      };
+    }
+    
+    default:
+      return state;
+  }
+};
