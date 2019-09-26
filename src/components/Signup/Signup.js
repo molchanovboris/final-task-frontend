@@ -91,7 +91,7 @@ export class Signup extends React.Component {
             />
               
             
-            <button className="ui button primary" onClick={onSignup} >Sign Up</button>
+            <button className="ui button primary"  >Sign Up</button>
             
           </form>
     )

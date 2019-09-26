@@ -3,9 +3,12 @@ import { LOGIN } from "../actionTypes";
 
 
 const initialState = {
-  username: '',
-  email: '',
-  password: ''
+  registerLoading: false,
+  registerError: null,
+  loginLoading: false,
+  loginError: null,
+  isAuthenticated: false,
+  user: null
 };
 
 export default (state = initialState, action) => {

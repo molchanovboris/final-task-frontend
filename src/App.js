@@ -1,8 +1,9 @@
 import React, { Suspense, Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
+import history from './history';
 
 import './App.css';
 
@@ -26,7 +27,7 @@ class Home extends Component {
 function App() {
   return (
     <div className="ui container">
-      <Router>
+      <Router history={history}>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path="/" component={Home}/>
