@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import classes from './Signup.module.css';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
@@ -39,70 +40,23 @@ export class Signup extends React.Component {
     );
   }
 
-
-  // constructor(props) {
-  //   super(props);
-
-  //   // this.state = {
-  //   //   // username: this.props.user.username,
-  //   //   email: this.props.user.email,
-  //   //   password: this.props.user.password,
-  //   //   confirmedPassword: ''
-  //   // };
-
-  //   // this.registerHandler.bind(this);
-  // }
-
-
-
-  updateFormState = (params) => {
-    this.setState(params);
-  }
-
-
-
-  // registerHandler = (event) => {
-  //   console.log(event);
-  //   // event.preventDefault();
-  //   // console.log(event);
-
-  //   // const postData = { ...this.state };
-  //   // delete postData.confirmedPassword;
-
-  //   // this.props.signup(this.state);
-
-  //   // itemsFetchData()
-  //   // fetch('http://localhost:5000/auth/register', {
-  //   //   method: 'POST',
-  //   //   headers: {
-  //   //     'Content-Type': 'application/json',
-  //   //   },
-  //   //   body: JSON.stringify(postData)
-  //   // }).then(res => {
-  //   //   console.log(res);
-  //   // });
-  // }
-
+  
   registerHandler = formValues => {
     console.log(formValues);
     this.props.createSignup(formValues);
-
   }
 
-
-
-
-
-
-
   render() {
-    // console.log(this.props);
     return (      
           <form
             onSubmit={this.props.handleSubmit(this.registerHandler)}
             className="ui form error"
-          >
-            <h1>Registrer</h1>
+          >  
+            <div className="ui secondary pointing menu">
+              <Link className="right menu" to="/login">Log In</Link>
+            </div>
+            
+            <h1>Sign Up</h1>
             <Field
               name="username"
               type="text"
@@ -111,49 +65,34 @@ export class Signup extends React.Component {
 
             />
               
-              <Field
-                name="email"
-                type="email"
-                component={this.renderInput}
-                label="Email"
-                placeholder="Email"
+            <Field
+              name="email"
+              type="email"
+              component={this.renderInput}
+              label="Email"
+              placeholder="Email"
    
-              />
-              <Field
-                name="password"
-                type="password"
-                component={this.renderInput}
-                label="Password"
-  
-              />
-              <Field
-                name="confirmPassword"
-                type="password"
-                component={this.renderInput}
-                label="Confirm Password"
-  
-              />
-            {/* <input 
-              type="email" id="email"  
-              value={this.state.email} 
-              onChange={($event) => this.updateFormState({ ...this.state, email: $event.target.value })} 
             />
-            <label htmlFor="password">Password</label>
-            <input 
-              type="password" id="password" 
-              value={this.state.password} 
-              onChange={($event) => this.updateFormState({ ...this.state, password: $event.target.value })}
+
+            <Field
+              name="password"
+              type="password"
+              component={this.renderInput}
+              label="Password"
+  
             />
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input 
-              type="password" id="confirmPassword" 
-              value={this.state.confirmedPassword} 
-              onChange={($event) => this.updateFormState({ ...this.state, confirmedPassword: $event.target.value })}
-            /> */}
 
-
-            <button className="ui button primary">Register</button>
-            <Link className="ui button primary" to="/login">Login</Link>
+            <Field
+              name="confirmPassword"
+              type="password"
+              component={this.renderInput}
+              label="Confirm Password"
+  
+            />
+              
+            
+            <button className="ui button primary" onClick={onSignup} >Sign Up</button>
+            
           </form>
     )
   }
@@ -177,7 +116,7 @@ const validate = (formValues) => {
   if (!formValues.password) {
     errors.password = "You must enter a password";
   }
-  if (!formValues.confirmPassword) {
+  if (formValues.confirmPassword !== formValues.password) {
     errors.confirmPassword = "You must enter a confirmPassword";
   }
 

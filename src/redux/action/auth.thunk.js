@@ -1,5 +1,6 @@
 
 import * as actions from './auth.actions';
+import history from "../../history";
 
 import axiosInstance from '../../api';
 
@@ -7,8 +8,9 @@ export const createSignup = formValues => async dispatch => {
     dispatch(actions.signupRequest());
 
     try {
-        const result = await axiosInstance.post('/auth/register', formValues)
+        const result = await axiosInstance.post('/auth/signup', formValues)
         dispatch(actions.signupSuccess(result.data));
+        history.push('/login');
 
     } catch (error) {
         dispatch(actions.signupFailure({ message: error.message }));

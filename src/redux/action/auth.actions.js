@@ -14,7 +14,8 @@ export const signupRequest = () => ({
 
 export const signupSuccess = (data) => ({
     type: SIGNUP_SUCCESS,
-    payload: data
+    payload: data,
+
 })
 
 export const signupFailure = (err) => ({
@@ -36,3 +37,8 @@ export const loginFailure = (err) => ({
     type: LOGIN_FAILURE,
     payload: err
 })
+
+
+
+
+
