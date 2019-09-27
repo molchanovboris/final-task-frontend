@@ -47,6 +47,7 @@ export class Login extends React.Component {
   }
 
   render() {
+    if (this.props.loading) return <h1>LOADING...</h1>
     return (      
           <form
             onSubmit={this.props.handleSubmit(this.loginHandler)}
@@ -107,5 +108,9 @@ const formWrapped = reduxForm({
   //   { signup }
 )(Login);
 
-export default connect(null, { createLogin })(formWrapped);
+const mapStateToProps = (state) => ({
+  loading: state.auth.loginLoading,
+})
+
+export default connect(mapStateToProps, { createLogin })(formWrapped);
 

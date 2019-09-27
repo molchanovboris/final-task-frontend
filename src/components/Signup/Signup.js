@@ -40,60 +40,61 @@ export class Signup extends React.Component {
     );
   }
 
-  
+
   registerHandler = formValues => {
     console.log(formValues);
     this.props.createSignup(formValues);
   }
 
   render() {
-    return (      
-          <form
-            onSubmit={this.props.handleSubmit(this.registerHandler)}
-            className="ui form error"
-          >  
-            <div className="ui secondary pointing menu">
-              <Link className="right menu" to="/login">Log In</Link>
-            </div>
-            
-            <h1>Sign Up</h1>
-            <Field
-              name="username"
-              type="text"
-              component={this.renderInput}
-              label="Username"
+    if (this.props.loading) return <h1>LOADING...</h1>
+    return (
+      <form
+        onSubmit={this.props.handleSubmit(this.registerHandler)}
+        className="ui form error"
+      >
+        <div className="ui secondary pointing menu">
+          <Link className="right menu" to="/login">Log In</Link>
+        </div>
 
-            />
-              
-            <Field
-              name="email"
-              type="email"
-              component={this.renderInput}
-              label="Email"
-              placeholder="Email"
-   
-            />
+        <h2>Sign Up</h2>
+        <Field
+          name="username"
+          type="text"
+          component={this.renderInput}
+          label="Username"
 
-            <Field
-              name="password"
-              type="password"
-              component={this.renderInput}
-              label="Password"
-  
-            />
+        />
 
-            <Field
-              name="confirmPassword"
-              type="password"
-              component={this.renderInput}
-              label="Confirm Password"
-  
-            />
-              
-            
-            <button className="ui button primary"  >Sign Up</button>
-            
-          </form>
+        <Field
+          name="email"
+          type="email"
+          component={this.renderInput}
+          label="Email"
+          placeholder="Email"
+
+        />
+
+        <Field
+          name="password"
+          type="password"
+          component={this.renderInput}
+          label="Password"
+
+        />
+
+        <Field
+          name="confirmPassword"
+          type="password"
+          component={this.renderInput}
+          label="Confirm Password"
+
+        />
+
+
+        <button className="ui button primary"  >Sign Up</button>
+
+      </form>
     )
   }
 }
@@ -133,5 +134,9 @@ const formWrapped = reduxForm({
   //   { signup }
 )(Signup);
 
-export default connect(null, { createSignup })(formWrapped);
+const mapStateToProps = (state) => ({
+  loading: state.auth.signupLoading,
+})
+
+export default connect(mapStateToProps, { createSignup })(formWrapped);
 

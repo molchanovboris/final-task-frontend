@@ -1,10 +1,16 @@
-import { SIGNUP } from "../actionTypes";
-import { LOGIN } from "../actionTypes";
+import { 
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+ } from "../actionTypes";
 
 
 const initialState = {
-  registerLoading: false,
-  registerError: null,
+  signupLoading: false,
+  signupError: null,
   loginLoading: false,
   loginError: null,
   isAuthenticated: false,
@@ -13,16 +19,45 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SIGNUP: {
+    case SIGNUP_REQUEST: {
       return {
         ...state,
-        ...action.payload
+        signupLoading: true
       };
     }
-    case LOGIN: {
+    case SIGNUP_SUCCESS: {
       return {
         ...state,
-        ...action.payload
+        signupLoading: false
+      };
+    }
+    case SIGNUP_FAILURE: {
+      return {
+        ...state,
+        signupLoading: false,
+        signupError: action.payload,
+      };
+    }
+    case LOGIN_REQUEST: {
+      return {
+        ...state,
+        loginLoading: true
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        loginLoading: false,
+        isAuthenticated: true,
+        user: action.payload.user
+      };
+    }
+    case LOGIN_FAILURE: {
+      return {
+        ...state,
+        loginLoading: false,
+        loginError: action.payload,
+        isAuthenticated: false
       };
     }
     
