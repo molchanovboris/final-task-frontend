@@ -3,6 +3,8 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
+import WeatherPage from "./components/WeatherPage/WeatherPage";
+import EditPage from './components/EditPage/EditPage'
 import history from './history';
 
 import './App.css';
@@ -13,12 +15,12 @@ class Home extends Component {
       <div>
         <h1>Home</h1>
         <Link to="/login">
-        Login
-      </Link>
+          Login
+        </Link>
 
-      <Link to="/signup">
-        Register
-      </Link>
+        <Link to="/signup">
+          Register
+        </Link>
       </div>
     )
   }
@@ -33,6 +35,8 @@ function App() {
             <Route exact path="/" component={Home}/>
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={Signup}/>
+            <Route path="/weather" component={WeatherPage}/>
+            <Route path="/EditPage/:id" component={EditPage}/>
           </Switch>
         </Suspense>
       </Router>

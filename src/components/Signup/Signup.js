@@ -129,9 +129,7 @@ const formWrapped = reduxForm({
   form: 'Signup',
   validate
 }
-  // ,
-  //   mapStateToProps,   
-  //   { signup }
+  
 )(Signup);
 
 const mapStateToProps = (state) => ({
