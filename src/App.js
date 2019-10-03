@@ -36,7 +36,7 @@ function App() {
             <Route path="/login" component={Login}/>
             <Route path="/signup" component={Signup}/>
             <Route path="/weather" component={WeatherPage}/>
-            <Route path="/EditPage/:id" component={EditPage}/>
+            <Route path="/editpage" component={EditPage}/>
           </Switch>
         </Suspense>
       </Router>

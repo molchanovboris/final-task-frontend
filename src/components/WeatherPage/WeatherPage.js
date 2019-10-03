@@ -1,50 +1,88 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
-import { createGlobalStyle } from "styled-components";
-// import thunk from "redux-thunk";
-import { fetchWeather } from '../../redux/action/auth.thunk';
-import { Field, reduxForm } from "redux-form";
+import { fetchWeather } from '../../redux/action/weather.thunk';
 import Autocomplete from 'react-google-autocomplete';
-import weatherMap from '../../api/weatherMap';
-import weatherReducer from "../../redux/reducers/weatherReducer";
+
+import  TopNav from '../TopNav';
 
 
-class WeatherPage extends React.Component {
-    componentDidMount() {
-        this.props.fetchWeather({lat,lng});
+
+class WeatherPage extends Component {
+
+    onPlaceSelected = (place) => {
+        const lng = place.geometry.location.lng();
+        const lat = place.geometry.location.lat();
+        this.props.fetchWeather(lat, lng);
     }
-    
-    
-    
+
+    // renderUserId(weather) {
+    //     if (weather._id === this.props.currentUserId) {
+    //         return (
+    //             <div>EDIT</div>
+    //         );
+    //     };
+    // };
+
+    renderList() {
+        return this.props.weather.map((weather) => {
+            return(
+                <tr key={weather.dt_txt}>
+                    <td data-label="Date">{weather.dt_txt}</td>
+                    <td data-label="Temperature (Celsium)">{Math.floor(weather.main.temp - 273)}</td>
+                    <td data-label="Weather condition">{weather.weather[0].description}</td>
+                </tr>
+            );
+        });
+    }
+
     render() {
         console.log(this.props.weather);
+
         return (
+            <>
+            <TopNav />
             <div className="search-bar ui segment">
                 <form className="ui form">
                     <div className="field">
                         <h1>WeatherPage</h1>
                         <Autocomplete
                             style={{width: '90%'}}
-                            onPlaceSelected={(place) => {
-                                console.log(place);
-                            }}
+                            onPlaceSelected={this.onPlaceSelected}
                             types={['(regions)']}
                             componentRestrictions={{country: "ru"}}
                         />
                     </div>
                 </form>
+                <div>
+                <div>
+                    {!!this.props.weather.length &&
+                        <table component={this.setTable} className="ui celled table">
+                            <thead>
+                                <tr className="header hideHeader">
+                                    <th>Date</th>
+                                    <th>Temperature (Celsium)</th>
+                                    <th>Weather condition</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.renderList()}
+                            </tbody>
+                        </table>     
+                    }
+                </div>
+                {/* {this.renderUserId()} */}
+                </div>
             </div>
-            
-            
+            </>
         );
-              
     }
 }
 
 const mapStateToProps = state => {
-    return {  weather: weatherReducer  };
+    return {  
+        weather: state.weather.data,
+        // currentUserId: state.auth.user._id
+      };
 }
 
 

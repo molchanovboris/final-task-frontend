@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import classes from './Signup.module.css';
+// import { Redirect } from 'react-router-dom';
+// import classes from './Signup.module.css';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { createGlobalStyle } from "styled-components";
+// import { createGlobalStyle } from "styled-components";
 // import thunk from "redux-thunk";
 import { createSignup } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
 
 
-const GlobalStyle = createGlobalStyle`
-  html {
-    color: red;
-  }
-`;
+// const GlobalStyle = createGlobalStyle`
+//   html {
+//     color: red;
+//   }
+// `;
 
 
-export class Signup extends React.Component {
+export class Signup extends Component {
 
   renderError({ error, touched }) {
     if (touched && error) {

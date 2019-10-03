@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import classes from './Login.module.css';
+// import classes from './Login.module.css';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { createGlobalStyle } from "styled-components";
+// import { createGlobalStyle } from "styled-components";
 // import thunk from "redux-thunk";
 import { createLogin } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
 
 
-const GlobalStyle = createGlobalStyle`
-  html {
-    color: red;
-  }
-`;
+// const GlobalStyle = createGlobalStyle`
+//   html {
+//     color: red;
+//   }
+// `;
 
 
-export class Login extends React.Component {
+export class Login extends Component {
 
   renderError({ error, touched }) {
     if (touched && error) {
