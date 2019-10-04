@@ -13,7 +13,12 @@ class WeatherPage extends Component {
         const lng = place.geometry.location.lng();
         const lat = place.geometry.location.lat();
         this.props.fetchWeather(lat, lng);
+        console.log(place.formatted_address);
+        document.write(Date());
+        console.log(Date()); 
+        
     }
+    
 
     // renderUserId(weather) {
     //     if (weather._id === this.props.currentUserId) {
@@ -26,11 +31,13 @@ class WeatherPage extends Component {
     renderList() {
         return this.props.weather.map((weather) => {
             return(
+                
                 <tr key={weather.dt_txt}>
                     <td data-label="Date">{weather.dt_txt}</td>
                     <td data-label="Temperature (Celsium)">{Math.floor(weather.main.temp - 273)}</td>
                     <td data-label="Weather condition">{weather.weather[0].description}</td>
                 </tr>
+                
             );
         });
     }
@@ -50,8 +57,10 @@ class WeatherPage extends Component {
                             onPlaceSelected={this.onPlaceSelected}
                             types={['(regions)']}
                             componentRestrictions={{country: "ru"}}
+                            
                         />
                     </div>
+                    
                 </form>
                 <div>
                 <div>
@@ -72,6 +81,7 @@ class WeatherPage extends Component {
                 </div>
                 {/* {this.renderUserId()} */}
                 </div>
+
             </div>
             </>
         );

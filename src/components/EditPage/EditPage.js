@@ -4,7 +4,7 @@ import  TopNav from '../TopNav';
 import { getUser, editUser } from '../../redux/action/editUser.thunk';
 import jwt_decode from 'jwt-decode';
 import history from '../../history';
-import { Field, reduxForm } from "redux-form";
+import { reduxForm } from "redux-form";
 import { Link } from 'react-router-dom';
 
 

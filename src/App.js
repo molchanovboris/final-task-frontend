@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import WeatherPage from "./components/WeatherPage/WeatherPage";
-import EditPage from './components/EditPage/EditPage'
+import EditPage from './components/EditPage/EditPage';
+import RequestHistoryList from './components/RequestsHistoryList/RequestHistoryList';
+import RequestHistoryDetails from './components/RequestHistoryDetails/RequestHistoryDetails';
 import history from './history';
 
 import './App.css';
@@ -37,6 +39,8 @@ function App() {
             <Route path="/signup" component={Signup}/>
             <Route path="/weather" component={WeatherPage}/>
             <Route path="/editpage" component={EditPage}/>
+            <Route path="/historylist" component={RequestHistoryList}/>
+            <Route path="/historydetails" component={RequestHistoryDetails}/>
           </Switch>
         </Suspense>
       </Router>
