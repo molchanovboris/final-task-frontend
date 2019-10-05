@@ -30,9 +30,9 @@ export class EditPage extends React.PureComponent {
         }
     }
 
-      editHandler = formValues => {
-        console.log(formValues);
-        this.props.editUser(formValues);
+      editHandler = (username, password) => {
+        console.log((username, password));
+        this.props.editUser((username, password));
       }
 
     componentDidMount() {

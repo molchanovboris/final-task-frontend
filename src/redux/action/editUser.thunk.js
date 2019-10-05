@@ -33,12 +33,12 @@ export const getUser = (_id) => async (dispatch) => {
 };
 
 
-export const editUser = (formValues) => async dispatch  => {
+export const editUser = (username, password) => async dispatch  => {
     dispatch(actions.editRequest());
 
     try {
 
-        const result = await axiosInstance.post('/auth/update', formValues)
+        const result = await axiosInstance.post('/auth/update', {username, password})
         dispatch(actions.editSuccess(result.user));
 
     } catch (error) {

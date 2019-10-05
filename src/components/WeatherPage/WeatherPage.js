@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchWeather } from '../../redux/action/weather.thunk';
+import { createWeather, fetchWeather } from '../../redux/action/weather.thunk';
 import Autocomplete from 'react-google-autocomplete';
 
 import  TopNav from '../TopNav';
@@ -13,9 +13,9 @@ class WeatherPage extends Component {
         const lng = place.geometry.location.lng();
         const lat = place.geometry.location.lat();
         this.props.fetchWeather(lat, lng);
-        console.log(place.formatted_address);
+        // console.log(place.formatted_address);
         document.write(Date());
-        console.log(Date()); 
+        // console.log(Date()); 
         
     }
     
@@ -28,6 +28,13 @@ class WeatherPage extends Component {
     //     };
     // };
 
+    // weatherHandler = formValues => {
+    //     console.log(formValues);
+    //     this.props.createWeather(formValues);
+    //   }
+
+
+    
     renderList() {
         return this.props.weather.map((weather) => {
             return(
@@ -42,14 +49,24 @@ class WeatherPage extends Component {
         });
     }
 
+    weatherHandler = formValues => {
+        console.log(formValues);
+        this.props.createWeather(formValues);
+      }
+
+
     render() {
         console.log(this.props.weather);
-
+        // console.log(Date()); 
+        
         return (
             <>
             <TopNav />
-            <div className="search-bar ui segment">
-                <form className="ui form">
+            <div    
+            className="search-bar ui segment">
+                <form 
+                    className="ui form"
+                                 >
                     <div className="field">
                         <h1>WeatherPage</h1>
                         <Autocomplete
@@ -61,9 +78,9 @@ class WeatherPage extends Component {
                         />
                     </div>
                     
-                </form>
+                
                 <div>
-                <div>
+                <div >
                     {!!this.props.weather.length &&
                         <table component={this.setTable} className="ui celled table">
                             <thead>
@@ -81,6 +98,8 @@ class WeatherPage extends Component {
                 </div>
                 {/* {this.renderUserId()} */}
                 </div>
+                <button className="ui button primary"  >Sign Up</button>
+                </form>
 
             </div>
             </>
@@ -91,9 +110,10 @@ class WeatherPage extends Component {
 const mapStateToProps = state => {
     return {  
         weather: state.weather.data,
+        loading: state.weather.weathersLoading
         // currentUserId: state.auth.user._id
       };
 }
 
 
-export default connect(mapStateToProps, { fetchWeather }) (WeatherPage);
+export default connect(mapStateToProps, { createWeather, fetchWeather }) (WeatherPage);
