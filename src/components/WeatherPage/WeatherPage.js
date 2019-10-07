@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { createWeather, fetchWeather } from '../../redux/action/weather.thunk';
+import { fetchWeather } from '../../redux/action/weather.thunk';
 import Autocomplete from 'react-google-autocomplete';
 
 import  TopNav from '../TopNav';
@@ -9,31 +9,33 @@ import  TopNav from '../TopNav';
 
 class WeatherPage extends Component {
 
-    onPlaceSelected = (place) => {
+    onPlaceSelected = async (place) => {
         const lng = place.geometry.location.lng();
         const lat = place.geometry.location.lat();
-        this.props.fetchWeather(lat, lng);
-        // console.log(place.formatted_address);
-        document.write(Date());
+        await this.props.fetchWeather(lat, lng);
+        // await this.props.weatherHandler(this.props.Weather);
+        console.log(place.formatted_address);
+        // document.write(Date());
         // console.log(Date()); 
         
     }
     
-
-    // renderUserId(weather) {
-    //     if (weather._id === this.props.currentUserId) {
-    //         return (
-    //             <div>EDIT</div>
-    //         );
-    //     };
-    // };
-
-    // weatherHandler = formValues => {
-    //     console.log(formValues);
-    //     this.props.createWeather(formValues);
-    //   }
+    // infWeather = {
+    //     date: new Date,
+    //     list: [],
+    //     address: [onPlaceSelected().formatted_address]
+    // }
 
 
+    // {
+    //     date: new Date,
+    //     list: [],
+    //     address:
+
+    // }
+
+   
+ 
     
     renderList() {
         return this.props.weather.map((weather) => {
@@ -49,15 +51,15 @@ class WeatherPage extends Component {
         });
     }
 
-    weatherHandler = formValues => {
-        console.log(formValues);
-        this.props.createWeather(formValues);
-      }
+    // weatherHandler = formValues => {
+    //     console.log(formValues);
+    //     this.props.createWeather(formValues);
+    //   }
 
 
     render() {
         console.log(this.props.weather);
-        // console.log(Date()); 
+        console.log(Date()); 
         
         return (
             <>
@@ -98,7 +100,6 @@ class WeatherPage extends Component {
                 </div>
                 {/* {this.renderUserId()} */}
                 </div>
-                <button className="ui button primary"  >Sign Up</button>
                 </form>
 
             </div>
@@ -116,4 +117,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { createWeather, fetchWeather }) (WeatherPage);
+export default connect(mapStateToProps, { fetchWeather }) (WeatherPage);
