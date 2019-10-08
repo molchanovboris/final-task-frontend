@@ -82,7 +82,6 @@ class WeatherPage extends Component {
                     
                 
                 <div>
-                <div >
                     {!!this.props.weather.length &&
                         <table component={this.setTable} className="ui celled table">
                             <thead>
@@ -99,7 +98,6 @@ class WeatherPage extends Component {
                     }
                 </div>
                 {/* {this.renderUserId()} */}
-                </div>
                 </form>
 
             </div>
@@ -117,4 +115,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { fetchWeather }) (WeatherPage);
+export default connect(mapStateToProps, {  fetchWeather }) (WeatherPage);

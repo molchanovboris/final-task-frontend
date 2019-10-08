@@ -1,69 +1,71 @@
 import React from "react";
 import { connect } from 'react-redux';
 import TopNav from '../TopNav';
-import WeatherPage from "../WeatherPage/WeatherPage";
-// import history from '../../history';
-// import { reduxForm } from "redux-form";
+import { getHistoryDetails } from '../../redux/action/historyDetails.thunk';
+import { reduxForm } from "redux-form";
 
 export class RequestHistoryDetails extends React.PureComponent {
 
+    componentDidMount() {
+        this.props.getHistoryDetails();
+    }
+
     renderList() {
-        return this.props.weather.map((weather) => {
-            return (
-                <tr key={weather.dt_txt}>
-                    <td data-label="Date">{weather.dt_txt}</td>
-                    <td data-label="Temperature (Celsium)">{Math.floor(weather.main.temp - 273)}</td>
-                    <td data-label="Weather condition">{weather.weather[0].description}</td>
+        return this.props.data.map((elem) => {
+            return(
+                
+                <tr key={elem.formatted_address}>
+                    <td data-label="Adress">{elem.formatted_address}</td>
+                    <td data-label="Date">{elem.date}</td>
                 </tr>
+                
             );
         });
     }
 
+
+
     render() {
+
         return (
             <>
                 <TopNav />
-                <form className="ui list">
+
                     <div>
-                        <h1>Request History List</h1>
+                        <h1>Request History Details</h1>
                     </div>
-                    <div className="item">
-                        <i className="marker icon"></i>
-                        <div className="content">
-                            Place
-                        </div>
+                    <div>
+                       <table component={this.setTable} className="ui celled table">
+                            <thead>
+                                <tr className="header hideHeader">
+                                    <th>Adress</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.props.data && this.renderList()}
+                            </tbody>
+                        </table>  
                     </div>
-                    <div className="item">
-                        <i className="calendar alternate outline icon"></i>
-                        <div className="content">
-                            Date
-                        </div>
-                    </div>
-                    <table component={this.setTable} className="ui celled table">
-                        <thead>
-                            <tr className="header hideHeader">
-                                <th>Date</th>
-                                <th>Temperature (Celsium)</th>
-                                <th>Weather condition</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.renderList()}
-                        </tbody>
-                    </table>
-                </form>
+                    
             </>
         );
     };
 };
 
-const mapStateToProps = state => {
-    return {
-        weather: state.weather.data,
-        // currentUserId: state.auth.user._id
-    };
-}
+const formWrapped = reduxForm({
+    form: 'RequestHistoryDetails'
+    
+    
+  }
+    
+  )(RequestHistoryDetails);
 
-export default connect(mapStateToProps, {
 
-})(RequestHistoryDetails);
+export default connect((state) =>( {
+    data: state.historyDetails.data,
+    loading: state.historyDetails.loading,
+    error: state.historyDetails.error
+}), {
+    getHistoryDetails,
+})(formWrapped);

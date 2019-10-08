@@ -30,9 +30,9 @@ export class EditPage extends React.PureComponent {
         }
     }
 
-      editHandler = (username, password) => {
-        console.log((username, password));
-        this.props.editUser((username, password));
+    editHandler = (username, password) => {
+       console.log((username, password));
+       this.props.editUser((username, password));
       }
 
     componentDidMount() {

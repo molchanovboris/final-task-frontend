@@ -2,16 +2,18 @@ import {
   WEATHER_REQUEST,
   WEATHER_SUCCESS,
   WEATHER_FAILURE,
-  WEATHERS_REQUEST,
-  WEATHERS_SUCCESS,
-  WEATHERS_FAILURE,
+  GETHISTORYLIST_REQUEST,
+  GETHISTORYLIST_SUCCESS,
+  GETHISTORYLIST_FAILURE
+
+  
 } from "../actionTypes";
 
 const initialState = {
   weatherLoading: false,
   weatherError: null,
-  weathersLoading: false,
-  weathersError: null,
+  getweatherLoading: false,
+  getweatherError: null,
   data: []
 };
 
@@ -39,28 +41,30 @@ export default (state = initialState, action) => {
       };
     }
 
-    case WEATHERS_REQUEST: {
+    case GETHISTORYLIST_REQUEST: {
       return {
         ...state,
-        weathersLoading: true
+        weatherLoading: true
       };
     }
-    case WEATHERS_SUCCESS: {
+    case GETHISTORYLIST_SUCCESS: {
 
       return {
         ...state,
         data: action.payload,
-        weatherLoading: false
+        getweatherLoading: false
       };
     }
-    case WEATHERS_FAILURE: {
+    case GETHISTORYLIST_FAILURE: {
       return {
         ...state,
-        weathersLoading: false,
-        weathersError: action.payload,
+        getweatherLoading: false,
+        getweatherError: action.payload,
       };
     }
-    
+
+
+        
     default:
       return state;
   }

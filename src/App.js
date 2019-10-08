@@ -40,7 +40,7 @@ function App() {
             <Route path="/weather" component={WeatherPage}/>
             <Route path="/editpage" component={EditPage}/>
             <Route path="/historylist" component={RequestHistoryList}/>
-            <Route path="/historydetails" component={RequestHistoryDetails}/>
+            <Route path="/historydetails/:id" component={RequestHistoryDetails}/>
           </Switch>
         </Suspense>
       </Router>
