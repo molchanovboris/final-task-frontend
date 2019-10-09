@@ -5,7 +5,6 @@ import { getUser, editUser } from '../../redux/action/editUser.thunk';
 import jwt_decode from 'jwt-decode';
 import history from '../../history';
 import { reduxForm } from "redux-form";
-import { Link } from 'react-router-dom';
 
 
 
@@ -37,7 +36,7 @@ export class EditPage extends React.PureComponent {
 
     componentDidMount() {
         const tokens = localStorage.getItem('token');
-        console.log(tokens);
+        // console.log(tokens);
         if (!tokens) {
             history.replace('/login');
         } else {
@@ -46,22 +45,30 @@ export class EditPage extends React.PureComponent {
                     ...jwt_decode(tokens)
 
                 }
-            ),() => console.log(this.state));
+            ),() => console.log(this.state)
+            );
         }
+        // this.props.editUser();
     }
 
     changeUsername = e => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         this.setState({username: e.target.value})
     }
     
     changePassword = e => {
-        console.log(e.target.value)
+        // console.log(e.target.value)
         console.log(this.state.password)
+    }
+
+    onClick = async () => {
+        await this.props.editUser();
+        console.log(this.props.editUser())
     }
     render () {
         
         const { username } = this.state;
+        // console.log(username, this.state.password)
         return(
             <>
             <TopNav />
@@ -77,7 +84,7 @@ export class EditPage extends React.PureComponent {
                 <input onChange={this.changePassword}/>
                 
             
-            <button className="ui button primary">Edit</button>
+            <button className="ui button primary" onClick={this.onClick}>Edit</button>
             </form>
             
             
@@ -96,6 +103,11 @@ const formWrapped = reduxForm({
     
   )(EditPage);
 
-export default connect(null, {
-    getUser, editUser
+export default connect((state) => ({
+    // user: state.editUser.user,
+    // loading: state.editUser.loading,
+    // error: state.editUser.error
+}), {
+    getUser, 
+    editUser
 }) (formWrapped);

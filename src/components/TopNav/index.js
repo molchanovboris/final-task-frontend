@@ -5,7 +5,7 @@ const TopNav = () => {
     const goToWeather = () => history.replace('/weather');
     const goToEdit = () => history.replace('/editpage');
     const goToHistoryList = () => history.replace('/historylist');
-    const goToHistoryDetails = () => history.replace('/historydetails');
+    const goToLogOut = () => history.replace('/Login');
 
 
     return (
@@ -13,7 +13,8 @@ const TopNav = () => {
                 <a className="item" onClick={goToWeather}>Weather</a>
                 <a className="item"  onClick={goToEdit}>Edit profile</a>
                 <a className="item" onClick={goToHistoryList}>Request History List</a>
-                <a className="item" onClick={goToHistoryDetails}>Request History Details</a>
+                <a className="item right" onClick={goToLogOut}><i class="user icon"></i>LogOut</a>
+
        
         </div>
     )

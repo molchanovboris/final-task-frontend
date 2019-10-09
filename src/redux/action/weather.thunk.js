@@ -10,6 +10,7 @@ export const fetchWeather = (lat,lng) => async (dispatch, getState) => {
 
     dispatch(actions.weatherRequest());
     try {
+        console.log('Погожа')
         const response = await weatherMap.get(`/data/2.5/forecast?lat=${ lat}&lon=${lng}&appid=7552cb9f95f273b6eaa304fc8b5f5e8f`);
         await axiosInstance.post('/history', {
             formatted_address: response.data.city.name,

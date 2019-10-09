@@ -7,18 +7,42 @@ import { reduxForm } from "redux-form";
 export class RequestHistoryDetails extends React.PureComponent {
 
     componentDidMount() {
-        this.props.getHistoryDetails();
+        this.props.getHistoryDetails(this.props.match.params.id);
     }
 
     renderList() {
         return this.props.data.map((elem) => {
-            return(
-                
-                <tr key={elem.formatted_address}>
-                    <td data-label="Adress">{elem.formatted_address}</td>
-                    <td data-label="Date">{elem.date}</td>
-                </tr>
-                
+            return (
+                <div className="ui list">
+                    <div className="item">
+                        <i className="marker icon"></i>
+                        <div className="content">
+                        {elem.formatted_address}
+                    </div>
+                </div>
+                    <div className="item">
+                        <i className="clock outline icon"></i>
+                        <div className="content">
+                        {elem.date}
+                        </div>
+                    </div>
+                    
+                </div>
+            );
+        });
+    }
+
+    renderTable() {
+        return this.props.data.map((elem) => {
+            console.log(elem)
+            return (
+                elem.weather.length && elem.weather.map(e => (
+                    <tr key={e.dt_txt}>
+                        <td data-label="Date">{e.dt_txt}</td>
+                        <td data-label="Temperature (Celsium)">{Math.floor(e.main.temp - 273)}</td>
+                        <td data-label="Weather condition">{e.weather[0].description}</td>
+                    </tr>   
+                ))
             );
         });
     }
@@ -31,23 +55,26 @@ export class RequestHistoryDetails extends React.PureComponent {
             <>
                 <TopNav />
 
-                    <div>
-                        <h1>Request History Details</h1>
-                    </div>
-                    <div>
-                       <table component={this.setTable} className="ui celled table">
-                            <thead>
-                                <tr className="header hideHeader">
-                                    <th>Adress</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.props.data && this.renderList()}
-                            </tbody>
-                        </table>  
-                    </div>
-                    
+                <div>
+                    <h1>Request History Details</h1>
+                </div>
+                <div>
+                    {this.props.data && this.renderList()}
+                    <table component={this.setTable} className="ui celled table">
+                        
+                        <thead>
+                            <tr className="header hideHeader">
+                                <th>Date</th>
+                                <th>Temperature (Celsium)</th>
+                                <th>Weather condition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.props.data && this.renderTable()}
+                        </tbody>
+                    </table>
+                </div>
+
             </>
         );
     };
@@ -55,14 +82,14 @@ export class RequestHistoryDetails extends React.PureComponent {
 
 const formWrapped = reduxForm({
     form: 'RequestHistoryDetails'
-    
-    
-  }
-    
-  )(RequestHistoryDetails);
 
 
-export default connect((state) =>( {
+}
+
+)(RequestHistoryDetails);
+
+
+export default connect((state) => ({
     data: state.historyDetails.data,
     loading: state.historyDetails.loading,
     error: state.historyDetails.error

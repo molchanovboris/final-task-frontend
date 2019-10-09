@@ -42,7 +42,7 @@ export const editUser = (username, password) => async dispatch  => {
         dispatch(actions.editSuccess(result.user));
 
     } catch (error) {
-        dispatch(actions.editFailure({ message: error.message }));
+        dispatch(actions.editFailure({ message: error.user }));
     }
 
 };

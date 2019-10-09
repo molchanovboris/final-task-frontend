@@ -11,9 +11,9 @@ export const editRequest = () => ({
     type: EDIT_REQUEST
 })
 
-export const editSuccess = (data) => ({
+export const editSuccess = (user) => ({
     type: EDIT_SUCCESS,
-    payload: data,
+    payload: user,
 
 })
 
@@ -25,9 +25,9 @@ export const getuserRequest = () => ({
     type: GETUSER_REQUEST
 })
 
-export const getuserSuccess = (data) => ({
+export const getuserSuccess = (user) => ({
     type: GETUSER_SUCCESS,
-    payload: data,
+    payload: user,
 
 })
 

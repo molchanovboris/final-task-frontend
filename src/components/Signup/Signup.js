@@ -54,7 +54,7 @@ export class Signup extends Component {
         className="ui form error"
       >
         <div className="ui secondary pointing menu">
-          <Link className="right menu" to="/login">Log In</Link>
+          <Link className="right menu" to="/login"><a className="ui active button"><i class="user icon"></i>Log In</a></Link>
         </div>
 
         <h2>Sign Up</h2>
