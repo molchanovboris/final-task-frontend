@@ -24,13 +24,11 @@ export class EditPage extends React.PureComponent {
   }
 
   editHandler = (username, password) => {
-       console.log((username, password));
     this.props.editUser((username, password));
   }
 
   componentDidMount() {
     const tokens = localStorage.getItem('token');
-    // console.log(tokens);
     if (!tokens) {
       history.replace('/login');
     } else {
@@ -45,13 +43,10 @@ export class EditPage extends React.PureComponent {
   }
 
   changeUsername = e => {
-    // console.log(e.target.value);
     this.setState({ username: e.target.value })
   }
   changePassword = e => {
-    // console.log(e.target.value)
     this.setState({ password: e.target.value })
-    // console.log(this.state.password)
   }
 
   onClick = async () => {
@@ -59,7 +54,6 @@ export class EditPage extends React.PureComponent {
   }
   render() {
     const { username } = this.state;
-    // console.log(username, this.state.password)
     return (
       <>
         <TopNav />
