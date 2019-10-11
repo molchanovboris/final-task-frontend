@@ -8,7 +8,6 @@ import EditPage from './components/EditPage/EditPage';
 import RequestHistoryList from './components/RequestsHistoryList/RequestHistoryList';
 import RequestHistoryDetails from './components/RequestHistoryDetails/RequestHistoryDetails';
 import history from './history';
-
 import './App.css';
 
 class Home extends Component {
@@ -19,7 +18,6 @@ class Home extends Component {
         <Link to="/login">
           Login
         </Link>
-
         <Link to="/signup">
           Register
         </Link>
@@ -34,13 +32,13 @@ function App() {
       <Router history={history}>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/login" component={Login}/>
-            <Route path="/signup" component={Signup}/>
-            <Route path="/weather" component={WeatherPage}/>
-            <Route path="/editpage" component={EditPage}/>
-            <Route path="/historylist" component={RequestHistoryList}/>
-            <Route path="/historydetails/:id" component={RequestHistoryDetails}/>
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/weather" component={WeatherPage} />
+            <Route path="/editpage" component={EditPage} />
+            <Route path="/historylist" component={RequestHistoryList} />
+            <Route path="/historydetails/:id" component={RequestHistoryDetails} />
           </Switch>
         </Suspense>
       </Router>

@@ -5,8 +5,6 @@ import {
   GETHISTORYLIST_REQUEST,
   GETHISTORYLIST_SUCCESS,
   GETHISTORYLIST_FAILURE
-
-  
 } from "../actionTypes";
 
 const initialState = {
@@ -40,7 +38,6 @@ export default (state = initialState, action) => {
         weatherError: action.payload,
       };
     }
-
     case GETHISTORYLIST_REQUEST: {
       return {
         ...state,
@@ -62,9 +59,6 @@ export default (state = initialState, action) => {
         getweatherError: action.payload,
       };
     }
-
-
-        
     default:
       return state;
   }

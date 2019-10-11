@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
-// import classes from './Signup.module.css';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-// import { createGlobalStyle } from "styled-components";
-// import thunk from "redux-thunk";
 import { createSignup } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
-
-
-// const GlobalStyle = createGlobalStyle`
-//   html {
-//     color: red;
-//   }
-// `;
-
+import { Button } from 'reactstrap';
 
 export class Signup extends Component {
 
@@ -35,11 +24,9 @@ export class Signup extends Component {
         <label>{label} </label>
         <input {...input} autoComplete="off" type={type} />
         {this.renderError(meta)}
-
       </div>
     );
   }
-
 
   registerHandler = formValues => {
     console.log(formValues);
@@ -54,60 +41,42 @@ export class Signup extends Component {
         className="ui form error"
       >
         <div className="ui secondary pointing menu">
-          <Link className="right menu" to="/login"><a className="ui active button"><i class="user icon"></i>Log In</a></Link>
+          <Link className="right menu" to="/login"><i className="user icon"></i>Log In</Link>
         </div>
-
         <h2>Sign Up</h2>
         <Field
           name="username"
           type="text"
           component={this.renderInput}
           label="Username"
-
         />
-
         <Field
           name="email"
           type="email"
           component={this.renderInput}
           label="Email"
           placeholder="Email"
-
         />
-
         <Field
           name="password"
           type="password"
           component={this.renderInput}
           label="Password"
-
         />
-
         <Field
           name="confirmPassword"
           type="password"
           component={this.renderInput}
           label="Confirm Password"
-
         />
-
-
-        <button className="ui button primary"  >Sign Up</button>
-
+        <Button color="primary" size="lg" active>Sign Up</Button>
       </form>
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.signup
-//   }
-// }
-
 const validate = (formValues) => {
   const errors = {};
-
   if (!formValues.username) {
     errors.username = "You must enter a username";
   }
@@ -120,16 +89,13 @@ const validate = (formValues) => {
   if (formValues.confirmPassword !== formValues.password) {
     errors.confirmPassword = "You must enter a confirmPassword";
   }
-
   return errors;
-
 };
 
 const formWrapped = reduxForm({
   form: 'Signup',
   validate
 }
-  
 )(Signup);
 
 const mapStateToProps = (state) => ({

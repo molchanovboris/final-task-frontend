@@ -1,4 +1,4 @@
-import { 
+import {
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
@@ -11,7 +11,7 @@ import {
   GETUSER_REQUEST,
   GETUSER_SUCCESS,
   GETUSER_FAILURE
- } from "../actionTypes";
+} from "../actionTypes";
 
 
 const initialState = {

@@ -1,22 +1,31 @@
 import React from 'react';
-import history from '../../history';
+// import history from '../../history';
+import { Nav, NavItem, NavLink } from 'reactstrap';
+
+
 
 const TopNav = () => {
-    const goToWeather = () => history.replace('/weather');
-    const goToEdit = () => history.replace('/editpage');
-    const goToHistoryList = () => history.replace('/historylist');
-    const goToLogOut = () => history.replace('/Login');
 
-
-    return (
-        <div className="ui secondary pointing menu">
-                <a className="item" onClick={goToWeather}>Weather</a>
-                <a className="item"  onClick={goToEdit}>Edit profile</a>
-                <a className="item" onClick={goToHistoryList}>Request History List</a>
-                <a className="item right" onClick={goToLogOut}><i class="user icon"></i>LogOut</a>
-
-       
-        </div>
-    )
+  // const goToWeather = () => history.replace('/weather');
+  return (
+    <div>
+      <Nav tabs>
+        <NavItem>
+          <NavLink href="/weather" active>Weather</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/editpage" active>Edit profile</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/historylist" active>Request History List</NavLink>
+        </NavItem>
+        <Nav className="ml-auto">
+          <NavItem>
+            <NavLink href="/Login" active>LogOut</NavLink>
+          </NavItem>
+        </Nav>
+      </Nav>
+    </div>
+  )
 }
 export default TopNav;

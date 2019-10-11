@@ -1,21 +1,19 @@
 import {
-    GETHISTORYLIST_REQUEST,
-    GETHISTORYLIST_SUCCESS,
-    GETHISTORYLIST_FAILURE
+  GETHISTORYLIST_REQUEST,
+  GETHISTORYLIST_SUCCESS,
+  GETHISTORYLIST_FAILURE
 } from '../actionTypes';
 
-
 export const getHistoryListRequest = () => ({
-    type: GETHISTORYLIST_REQUEST
+  type: GETHISTORYLIST_REQUEST
 })
 
 export const getHistoryListSuccess = (data) => ({
-    type: GETHISTORYLIST_SUCCESS,
-    payload: data,
-
+  type: GETHISTORYLIST_SUCCESS,
+  payload: data,
 })
 
 export const getHistoryListFailure = (err) => ({
-    type: GETHISTORYLIST_FAILURE,
-    payload: err
+  type: GETHISTORYLIST_FAILURE,
+  payload: err
 })

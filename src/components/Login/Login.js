@@ -1,19 +1,9 @@
 import React, { Component } from 'react';
-// import classes from './Login.module.css';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-// import { createGlobalStyle } from "styled-components";
-// import thunk from "redux-thunk";
 import { createLogin } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
-
-
-// const GlobalStyle = createGlobalStyle`
-//   html {
-//     color: red;
-//   }
-// `;
-
+import { Button } from 'reactstrap';
 
 export class Login extends Component {
 
@@ -39,8 +29,6 @@ export class Login extends Component {
     );
   }
 
-
-  
   loginHandler = formValues => {
     console.log(formValues);
     this.props.createLogin(formValues);
@@ -48,65 +36,48 @@ export class Login extends Component {
 
   render() {
     if (this.props.loading) return <h1>LOADING...</h1>
-    return (      
-          <form
-            onSubmit={this.props.handleSubmit(this.loginHandler)}
-            className="ui form error"
-          >
-            <div className="ui secondary pointing menu">
-              <Link className="right menu" to="/signup"><a className="ui active button"><i class="user icon"></i>Sign Up</a></Link>
-            </div> 
-            <h1>Log In</h1>
-            <Field
-              name="email"
-              type="email"
-              component={this.renderInput}
-              label="Email"
-   
-            />
-            <Field
-              name="password"
-              type="password"
-              component={this.renderInput}
-              label="Password"
-  
-            />
-            
-            
-            <button className="ui button primary">Log In</button>
-          </form>
+    return (
+      <form
+        onSubmit={this.props.handleSubmit(this.loginHandler)}
+        className="ui form error"
+      >
+        <div className="ui secondary pointing menu">
+          <Link className="right menu" to="/signup"><i className="user icon"></i>Sign Up</Link>
+        </div>
+        <h1>Log In</h1>
+        <Field
+          name="email"
+          type="email"
+          component={this.renderInput}
+          label="Email"
+        />
+        <Field
+          name="password"
+          type="password"
+          component={this.renderInput}
+          label="Password"
+        />
+        <Button color="primary" size="lg" active>Log In</Button>
+      </form>
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     user: state.signup
-//   }
-// }
-
 const validate = (formValues) => {
   const errors = {};
-
   if (!formValues.email) {
     errors.email = "You must enter a email";
   }
   if (!formValues.password) {
     errors.password = "You must enter a password";
   }
-  
   return errors;
-
 };
 
 const formWrapped = reduxForm({
   form: 'Login',
   validate
-}
-  // ,
-  //   mapStateToProps,   
-  //   { signup }
-)(Login);
+})(Login);
 
 const mapStateToProps = (state) => ({
   loading: state.auth.loginLoading,
