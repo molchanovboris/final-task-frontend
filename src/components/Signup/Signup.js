@@ -5,7 +5,7 @@ import { createSignup } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
 import { Button } from 'reactstrap';
 
-export class Signup extends Component {
+export class Signup extends React.PureComponent {
 
   renderError({ error, touched }) {
     if (touched && error) {

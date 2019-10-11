@@ -5,7 +5,7 @@ import Autocomplete from 'react-google-autocomplete';
 import { Table } from 'reactstrap';
 import TopNav from '../TopNav';
 
-class WeatherPage extends Component {
+class WeatherPage extends React.PureComponent {
 
   onPlaceSelected = async (place) => {
     const lng = place.geometry.location.lng();

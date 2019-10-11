@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { createLogin } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
 import { Button } from 'reactstrap';
 
-export class Login extends Component {
+export class Login extends React.PureComponent {
 
   renderError({ error, touched }) {
     if (touched && error) {
