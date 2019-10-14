@@ -25,6 +25,17 @@ export const createLogin = formValues => async dispatch => {
   }
 };
 
+export const checkAuth = formValues => async dispatch => {
+  dispatch(actions.checkauthRequest());
+  try {
+    const result = await axiosInstance.get('/auth', formValues)
+    dispatch(actions.checkauthSuccess(result.data));
+    localStorage.getItem('token', result.data.token);
+  } catch (error) {
+    dispatch(actions.checkauthFailure({ message: error.message }));
+  }
+};
+
 
 
 

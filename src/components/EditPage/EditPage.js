@@ -5,6 +5,9 @@ import { getUser, editUser } from '../../redux/action/editUser.thunk';
 import jwt_decode from 'jwt-decode';
 import history from '../../history';
 import { reduxForm } from "redux-form";
+import Button from '../styledComp/Button';
+import Title from '../styledComp/Title';
+
 
 export class EditPage extends React.PureComponent {
   state = {
@@ -60,14 +63,15 @@ export class EditPage extends React.PureComponent {
         <form
           onSubmit={this.props.handleSubmit(this.editHandler)}
           className="ui form error">
+            
           <div>
-            <h1>Edit</h1>
+            <Title>Edit</Title>
           </div>
           <span>Useranme</span>
           <input value={username} onChange={this.changeUsername} />
           <span>Password</span>
           <input onChange={this.changePassword} />
-          <button className="ui button primary" onClick={this.onClick}>Edit</button>
+          <Button onClick={this.onClick}>Edit</Button>
         </form>
       </>
     );

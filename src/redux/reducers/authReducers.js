@@ -5,6 +5,9 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  CHECKAUTH_REQUEST,
+  CHECKAUTH_SUCCESS,
+  CHECKAUTH_FAILURE,
   EDIT_REQUEST,
   EDIT_SUCCESS,
   EDIT_FAILURE,
@@ -22,6 +25,8 @@ const initialState = {
   isAuthenticated: false,
   editLoading: false,
   editError: null,
+  checkauthLoading: false,
+  checkauthError: null,
   user: null
 };
 
@@ -68,6 +73,31 @@ export default (state = initialState, action) => {
         isAuthenticated: false
       };
     }
+
+    case CHECKAUTH_REQUEST: {
+      return {
+        ...state,
+        checkauthLoading: true
+      };
+    }
+    case CHECKAUTH_SUCCESS: {
+      return {
+        ...state,
+        checkauthLoading: false,
+        isAuthenticated: true,
+        user: action.payload.user
+      };
+    }
+    case CHECKAUTH_FAILURE: {
+      return {
+        ...state,
+        checkauthLoading: false,
+        checkauthError: action.payload,
+        isAuthenticated: false
+      };
+    }
+
+
     case EDIT_REQUEST: {
       return {
         ...state,

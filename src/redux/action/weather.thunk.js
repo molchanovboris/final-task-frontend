@@ -17,6 +17,3 @@ export const fetchWeather = (lat, lng) => async dispatch => {
     dispatch(actions.weatherFailure({ message: error.message }));
   }
 };
-
-
-

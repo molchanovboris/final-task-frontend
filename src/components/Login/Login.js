@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { createLogin } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
-import { Button } from 'reactstrap';
+import Button from '../styledComp/Button';
+import Title from '../styledComp/Title';
+import Wrapper from '../styledComp/Wrapper';
+
 
 export class Login extends React.PureComponent {
 
@@ -30,9 +33,10 @@ export class Login extends React.PureComponent {
   }
 
   loginHandler = formValues => {
-    console.log(formValues);
+    console.log('formValues', formValues);
     this.props.createLogin(formValues);
   }
+  
 
   render() {
     if (this.props.loading) return <h1>LOADING...</h1>
@@ -41,10 +45,12 @@ export class Login extends React.PureComponent {
         onSubmit={this.props.handleSubmit(this.loginHandler)}
         className="ui form error"
       >
+        <Wrapper>
         <div className="ui secondary pointing menu">
-          <Link className="right menu" to="/signup"><i className="user icon"></i>Sign Up</Link>
+          <Button as={Link} className="right menu" to="/signup"><i className="user icon"></i>Sign Up</Button>
         </div>
-        <h1>Log In</h1>
+        
+        <Title>Log In</Title>
         <Field
           name="email"
           type="email"
@@ -57,11 +63,13 @@ export class Login extends React.PureComponent {
           component={this.renderInput}
           label="Password"
         />
-        <Button color="primary" size="lg" active>Log In</Button>
+        <Button>Log In</Button>
+        </Wrapper>
       </form>
     )
   }
 }
+
 
 const validate = (formValues) => {
   const errors = {};

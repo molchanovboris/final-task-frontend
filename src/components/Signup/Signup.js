@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { createSignup } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
-import { Button } from 'reactstrap';
-
+import Button from '../styledComp/Button';
+import Title from '../styledComp/Title';
+import Wrapper from '../styledComp/Wrapper';
 export class Signup extends React.PureComponent {
 
   renderError({ error, touched }) {
@@ -40,36 +41,38 @@ export class Signup extends React.PureComponent {
         onSubmit={this.props.handleSubmit(this.registerHandler)}
         className="ui form error"
       >
-        <div className="ui secondary pointing menu">
-          <Link className="right menu" to="/login"><i className="user icon"></i>Log In</Link>
-        </div>
-        <h2>Sign Up</h2>
-        <Field
-          name="username"
-          type="text"
-          component={this.renderInput}
-          label="Username"
-        />
-        <Field
-          name="email"
-          type="email"
-          component={this.renderInput}
-          label="Email"
-          placeholder="Email"
-        />
-        <Field
-          name="password"
-          type="password"
-          component={this.renderInput}
-          label="Password"
-        />
-        <Field
-          name="confirmPassword"
-          type="password"
-          component={this.renderInput}
-          label="Confirm Password"
-        />
-        <Button color="primary" size="lg" active>Sign Up</Button>
+        <Wrapper>
+          <div className="ui secondary pointing menu">
+            <Button as={Link} className="right menu" to="/login"><i className="user icon"></i>Log In</Button>
+          </div>
+          <Title>Sign Up</Title>
+          <Field
+            name="username"
+            type="text"
+            component={this.renderInput}
+            label="Username"
+          />
+          <Field
+            name="email"
+            type="email"
+            component={this.renderInput}
+            label="Email"
+            placeholder="Email"
+          />
+          <Field
+            name="password"
+            type="password"
+            component={this.renderInput}
+            label="Password"
+          />
+          <Field
+            name="confirmPassword"
+            type="password"
+            component={this.renderInput}
+            label="Confirm Password"
+          />
+          <Button>Sign Up</Button>
+        </Wrapper>
       </form>
     )
   }

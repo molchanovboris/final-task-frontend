@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import { fetchWeather } from '../../redux/action/weather.thunk';
 import Autocomplete from 'react-google-autocomplete';

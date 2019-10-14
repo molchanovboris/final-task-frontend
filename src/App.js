@@ -7,24 +7,13 @@ import WeatherPage from "./components/WeatherPage/WeatherPage";
 import EditPage from './components/EditPage/EditPage';
 import RequestHistoryList from './components/RequestsHistoryList/RequestHistoryList';
 import RequestHistoryDetails from './components/RequestHistoryDetails/RequestHistoryDetails';
+import Protected from './components/Protected'
 import history from './history';
-import './App.css';
+import Button from './components/styledComp/Button';
+import Title from './components/styledComp/Title';
 
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Home</h1>
-        <Link to="/login">
-          Login
-        </Link>
-        <Link to="/signup">
-          Register
-        </Link>
-      </div>
-    )
-  }
-}
+
+
 
 function App() {
   return (
@@ -32,13 +21,19 @@ function App() {
       <Router history={history}>
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
+            {/* <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
             <Route path="/weather" component={WeatherPage} />
-            <Route path="/editpage" component={EditPage} />
+            <Route exact path="/editpage" component={EditPage} />
             <Route path="/historylist" component={RequestHistoryList} />
-            <Route path="/historydetails/:id" component={RequestHistoryDetails} />
+            <Route path="/historydetails/:id" component={RequestHistoryDetails} /> */}
+
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route path="/" component={Protected} />
+
+
           </Switch>
         </Suspense>
       </Router>

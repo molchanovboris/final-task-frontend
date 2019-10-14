@@ -21,7 +21,8 @@
     "redux-form": "^8.2.6",
     "redux-localstorage-simple": "^2.1.6",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.0.0-beta.9"
+    "styled-components": "^5.0.0-beta.8-groupsizefix",
+    "styled-theming": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

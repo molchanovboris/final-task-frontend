@@ -45,6 +45,8 @@ export class RequestHistoryDetails extends React.PureComponent {
       );
     });
   }
+  
+  
 
   render() {
     return (
