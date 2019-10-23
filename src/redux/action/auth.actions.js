@@ -8,7 +8,8 @@ import {
   LOGIN_FAILURE,
   CHECKAUTH_REQUEST,
   CHECKAUTH_SUCCESS,
-  CHECKAUTH_FAILURE
+  CHECKAUTH_FAILURE,
+  LOGOUT
 
 } from '../actionTypes';
 
@@ -52,3 +53,9 @@ export const checkauthFailure = (err) => ({
   type: CHECKAUTH_FAILURE,
   payload: err
 })
+export const logOut = () => ({
+  type: LOGOUT,
+  
+})
+
+

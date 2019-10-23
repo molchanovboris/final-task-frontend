@@ -13,7 +13,8 @@ import {
   EDIT_FAILURE,
   GETUSER_REQUEST,
   GETUSER_SUCCESS,
-  GETUSER_FAILURE
+  GETUSER_FAILURE,
+  LOGOUT
 } from "../actionTypes";
 
 
@@ -25,8 +26,8 @@ const initialState = {
   isAuthenticated: false,
   editLoading: false,
   editError: null,
-  checkauthLoading: false,
-  checkauthError: null,
+  checkAuthLoading: false,
+  checkAuthError: false,
   user: null
 };
 
@@ -62,6 +63,7 @@ export default (state = initialState, action) => {
         ...state,
         loginLoading: false,
         isAuthenticated: true,
+        loginError: false,
         user: action.payload.user
       };
     }
@@ -69,7 +71,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginLoading: false,
-        loginError: action.payload,
+        loginError: true,
         isAuthenticated: false
       };
     }
@@ -77,26 +79,33 @@ export default (state = initialState, action) => {
     case CHECKAUTH_REQUEST: {
       return {
         ...state,
-        checkauthLoading: true
+        checkAuthLoading: true,
+        isAuthenticated: true,
+        checkAuthError: false,
       };
     }
     case CHECKAUTH_SUCCESS: {
       return {
         ...state,
-        checkauthLoading: false,
+        checkAuthLoading: false,
         isAuthenticated: true,
+        checkAuthError: false,
         user: action.payload.user
       };
     }
     case CHECKAUTH_FAILURE: {
       return {
         ...state,
-        checkauthLoading: false,
-        checkauthError: action.payload,
+        checkAuthLoading: false,
+        checkAuthError: true,
         isAuthenticated: false
       };
     }
-
+    case LOGOUT: {
+      return {
+        ...initialState,
+      };
+    }
 
     case EDIT_REQUEST: {
       return {

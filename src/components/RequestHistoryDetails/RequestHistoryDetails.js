@@ -34,6 +34,7 @@ export class RequestHistoryDetails extends React.PureComponent {
 
   renderTable() {
     return this.props.data.map((elem) => {
+      console.log(elem);
       return (
         elem.weather.length && elem.weather.map(e => (
           <tr key={e.dt_txt}>
@@ -45,8 +46,8 @@ export class RequestHistoryDetails extends React.PureComponent {
       );
     });
   }
-  
-  
+
+
 
   render() {
     return (

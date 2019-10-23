@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { createLogin } from '../../redux/action/auth.thunk';
 import { Field, reduxForm } from "redux-form";
 import Button from '../styledComp/Button';
 import Title from '../styledComp/Title';
 import Wrapper from '../styledComp/Wrapper';
+// import history from "../../history";
 
 
 export class Login extends React.PureComponent {
@@ -35,6 +36,7 @@ export class Login extends React.PureComponent {
   loginHandler = formValues => {
     console.log('formValues', formValues);
     this.props.createLogin(formValues);
+    return <Redirect to='/login' />
   }
   
 
